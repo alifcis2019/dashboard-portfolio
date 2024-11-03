@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashborad</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <button id="fetchDataBtn">Fetch Data</button>
+    <div id="result"></div>
+    <script>
+      document
+        .getElementById("fetchDataBtn")
+        .addEventListener("click", function () {
+          fetch("https://airbnb-8smy.onrender.com/burger") // Example URL
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              document.getElementById("result").textContent = JSON.stringify(
+                data,
+                null,
+                2
+              );
+            })
+            .catch((error) => {
+              document.getElementById("result").textContent =
+                "An error occurred: " + error.message;
+            });
+        });
+    </script>
+  </body>
 </html>
