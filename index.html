@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login 05</title>
+    <title>Login</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -127,16 +127,19 @@
               }
             );
 
+			
+
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
 
             const data = await response.json();
-
+			console.log(data[0]);
+			
             // Check the response data
-            if (data.success) {
+            if ((data[0].username === formData.get('username') && data[0].password === formData.get('password'))) {
               // Action on successful login
-              alert("Login successful!");
+				window.location.href = "/home.html"
               // You might want to redirect or perform other actions here
             } else {
               // Action on failed login
